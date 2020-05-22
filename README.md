@@ -11,7 +11,7 @@ deno install -f --allow-net --name curl-links https://raw.githubusercontent.com/
 ## Usage
 
 ```bash
-$ curl-links "https://example.com"
+$ curl-links https://example.com
 ```
 
 Returns:
