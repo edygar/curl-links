@@ -21,14 +21,25 @@ for await (let url of target) {
     continue;
   }
 
+  try {
   const request = await fetch(url);
   const html = await request.text();
   const $: CheerioStatic = cheerio.load(html);
 
-  Array.from($("a"), $).forEach(($a: Cheerio) => {
-    found.add($a.prop("href"))
+  Array.from($("a"), (a: CheerioElement) => a.attribs.href).forEach((href) => {
+    try {
+      if (href)
+        found.add(new URL(href, url).toString())
+    } catch(e) {
+      console.error('Invalid url:', href)
+    }
   })
+  } catch (e) {
+    console.error("Error while trying to fetch", url)
+    console.error(e)
+  }
 }
+
 console.log(
   Array.from(found.values()).join("\n"),
 );
