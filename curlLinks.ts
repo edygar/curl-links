@@ -1,4 +1,4 @@
-/// @deno-types="./typings/cheerio.d.ts"
+// @deno-types="./typings/cheerio.d.ts"
 import cheerio from "https://dev.jspm.io/npm:cheerio@0.22.0/index.js";
 
 /**
